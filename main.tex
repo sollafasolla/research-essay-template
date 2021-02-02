@@ -1,0 +1,163 @@
+% This is a template I made based on my (successful) Goldwater Scholarship application research essay. The formatting should be correct as of the 2019 application cycle, so check to make sure it lines up with any possible changes made since then. At the time, these were their formatting guidelines:
+% - 12 pt Arial font
+% - 1 inch margins on all sides (but headers and page numbers can encroach within the margins)
+% - no longer than 3 pages total
+% - your name and university at the top of each page
+% - captions for figures may be in 10 pt Arial font
+
+% Feel free to email me if you have any questions or if you were able to put the template to good use!
+
+% Hannah W Richards
+% hannah.willow.richards@gmail.com
+% June 3, 2019
+% Revised August 28, 2020
+% Revised January 19, 2021
+
+% Generally, I suggest you use first-person singular pronouns throughout your essay, especially in the "methods" section. This deviates from the norm in academic journals, where you'll generally use plural first-person pronouns, even if it was you alone who did the work. The idea here is that you can clearly describe the work that you personally did, and there won't be a question of how much of a role you had in a collaboration.
+% Your readers will have general scientific knowledge, but you can't expect them to know specific details about your field. This means that they will *most likely* be familiar with terms and concepts found in introductory college courses.
+% The essay may seem daunting at first, but pretty soon you're going to wish you had more space. Three pages fill up surprisingly quickly. You'll probably have your best results borrowing from a paper or report you've already written and condensing it down to its bare components. Play around with the formatting a bit until you have everything on three pages.
+% I used two columns, which is what my campus representative recommended. It's easier to read, and figures take up less space, which means you can have a more compact paper.
+
+\documentclass[12pt, letterpaper, twocolumn]{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{fontspec}
+\setmainfont{Arial}
+\usepackage{fancyhdr}
+\setlength{\headheight}{14.5pt}
+\usepackage{graphicx}
+\usepackage{caption}
+\captionsetup[figure]{font=small}
+\usepackage{amsmath}
+\usepackage[]{siunitx}
+\usepackage[style=numeric,sorting=none]{biblatex}
+\addbibresource{references.bib}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Osman Tahsin Berktaş \\ Student Id: 2044873} % change this to your actual name
+\rhead{METU IAM\\Course 517} % same for your university
+\rfoot{\thepage}
+
+\begin{document}
+
+% title
+\begin{center}
+\textbf{Term Project Report: Searching for Best Karatsuba Recurrences}
+\end{center}
+
+% introduction
+\noindent\textbf{Introduction}\\
+
+Fast multiplication algorithms are among the topics actively studied for many computer multiplications studies especially cryptographic multiplications. Most of the encryption algorithms use numerical multiplication intensively. The cost of multiplying two n-digit numbers corresponds to $n^2$ complexity when done by conventional methods. Karatsuba, on the other hand, can reduce this cost to approximately $n^{1.58}$ with the solution he proposed in 1962 ~\cite{karatsuba_1962}. When we compare it with $n^2$, it is clear that it can perform an effective optimization. In this report, I will explain Karatsuba's algorithm step by step in light of studies in the literature. First of all, I will try to explain the multiplication problem in current applications in the literature, then discuss the purpose and scope of the solution offered by Karatsuba~\cite{cenk_karatsuba_2018}. Seeing the value of being the title of this project proposal, I will also discuss Çalık's study looking for the best Karatsuba values ~\cite{calik_2019}. I will talk about the problem dealt with in his work, the scope of this problem, the method and results he proposes. The summary of the studies given in Çalık's literature is given below. The subject of this study is binary arithmetic operations performed in the background of our computers called binary polynomials. Arithmetic operations form the basis of computational studies performed with computers. These operations on the hardware have various costs such as power consumption and space occupation. Efficient use of the resources we call optimization has emerged as a problem and various suggestions have been presented in the literature for the solution to this problem. The first work I want to talk about is Barbulescu~\cite{Barbulescu_2012}'s study. In their work they describe a unified framework to search for optimal formulae evaluating bilinear or quadratic maps. This framework applies to polynomial multiplication and squaring, finite field arithmetic, matrix multiplication, etc. We then propose a new algorithm to solve problems in this unified framework. With an implementation of this algorithm, they prove the optimality of various published upper bounds, and find improved upper bounds. Bernstein~\cite{Bernstein_2009} says that his paper sets new software speed records for high-security Diffie-Hellman computations, specifically 251-bit elliptic-curve variablebase-point scalar multiplication. In one second of computation, his paper’s software performs 30000 251-bit scalar multiplications on the binary Edwards curve 
+\begin{equation}
+    d(x + x^2 + y + y^2) = (x + x^2)(y + y^2)
+\label{eqn:Bernstein_eq_1}
+\end{equation}
+ over the field
+ \begin{equation}
+    F_2[t] / (t^{251} + t^7 + t^4 + t^2 + 1)
+\label{eqn:Bernstein_eq_2}
+\end{equation}
+ where
+\begin{equation}
+    d = t^{57} + t^{54} + t^{44} + 1.
+\label{eqn:Bernstein_eq_3}
+\end{equation}
+ He also mentions that his paper’s field-arithmetic techniques can be applied in much more generality but have a particularly efficient interaction with the completeness of addition formulas for binary Edwards curves. Another work, Boyar~\cite{Joan_Boyar_2019} says that they offer techniques for obtaining small circuits with low depth. The techniques apply to typical cryptographic functions because they are usually specified on the GF (2) field and only generate circuits containing AND, XOR, and XNOR gates. The emphasis is on linear components (sections without an AND gate). A new heuristic method DCLO (for depth-constrained linear optimization) is used to create small linear circuits given depth constraints. DCLO is used repeatedly in a See-Saw method between optimizing the upper linear component and the lower linear component. Depth constraints specify both the depth that each entrance reaches and constraints on the depth of each output. By applying this techniques to cryptographic functions, they got new results to the Advanced Encryption Standard's S-Box, multiplying binary polynomials and multiplying in finite fields Additionally, they constructed a 16-bit S-Box using inversion in GF ($2^{16}$) which may be significantly smaller than alternatives. Same researcher Boyar~\cite{Joan_Boyar_2011}'s other work stated that a new technique for combinational logic optimization is described in their work. The technique is a two-step process. In the first step, the non-linearity of a circuit measured by the number of non-linear gates it contains is reduced. The second step reduces the number of gates in the linear components of the currently reduced circuit. The technique can be applied to arbitrary combinational logic problems and often provides improvements even after optimization with standard methods. In this article, they show the results of this technique when applied to the S-box of the Advanced Encryption Standard (FIPS in Advanced Encryption Standard (AES), National Institute of Standards and Technology, 2001). ın addition they show that in the second step he is facing the Shortest Linear Program (SLP) problem, an NP-difficult problem that is to minimize the number of linear operations required to compute a set of linear forms. Besides showing that SLP is NP-hard, it is shown that a particular case of the corresponding decision problem is MAX SNP-complete and this implies the limits of approximation. Previous algorithms aimed at minimizing the number of gates in linear components produced non-cancellation straight-line programs, i.e. programs in which no cancellation of variables in GF (2). It is calculated that such algorithms have approximation ratios of at least 3/2 and therefore cannot be expected to give optimal solutions to insignificant inputs. Linear programs produced with their techniques are not always without cancellation. For randomly selected linear transforms, they have experimentally verified that they are significantly smaller than circuits produced by previous algorithms. In Brent~\cite{Brent_2008}'s study, they discuss an application of various algorithms for multiplying polynomials in GF (2) [x]: types of window methods, Karatsuba, Toom-Cook, Sch’sonhage and Cantor algorithms. They strongly argue on the improvements that lead to practicality performance improvements. Another work which is worked in this area, Cenk~\cite{cenk_2015} proposes that reducing the number of bit operations for multiplying polynomials over the binary field. In their work firstly a modified Bernstein's 3-way algorithm is introduced, followed by a new 5-way algorithm.
+Next, a new 3-way algorithm is introduced that improves asymptotic arithmetic complexity compared to Bernstein's 3-way algorithm. This new algorithm uses three multiplications. Unlike Bernstein's algorithm, their proposed algorithm has a linear delay complexity with respect to the input size; the delay complexity of the new algorithm is logarithmic. The number of bit operations for multiplying polynomials over a four-element finite field is also calculated. Finally, all these new results are combined to achieve enhanced complexity. Haining Fan and M. Anwar Hasan~\cite{Fan_2007} show that multiplication complexities of n-term Karatsuba-Like formulae of GF (2)[x] $(7 < n < 19)$ presented in their paper that can be further improved using the Chinese Remainder Theorem and the construction multiplication modulo $(x $ − $ \infty)^w$. On the other hand, Magnus Gaudal Find and Rene Peralta~\cite{Find_2018} states that they develop a new and simple way to describe Karatsuba-like algorithms for multiplication of polynomials over $F_2$. They restrict the search of small circuits to a class of circuits they call symmetric bilinear. These are circuits in which AND gates only compute functions. These techniques yield improved recurrences for $M(kn)$ , the number of gates used in a circuit that multiplies two kn-term polynomials, for $k = 4, 5, 6, and 7$. They built and verified the circuits for n-term binary polynomial multiplication for values of n of practical interest. Other interdisciplinary work is Fuhs~\cite{Fuhs_2010}'s and his friend paper, they describe the implementation of a technique for minimizing XOR circuits used in cryptographic algorithms. More precisely, it is presented in their work for encoding this synthesis problem to SAT with a focus on the case study of optimizing an important component of the Advanced Encryption Standard (AES). In addition to these previously published contributions in the literature, they report on novel encouraging experimental results that allow them to actually prove optimality of the results obtained. Montgomery~\cite{Montgomery_2005} states in his work that the Karatsuba-Ofman algorithm starts with a way to multiply two 2-term (i.e., linear) polynomials using three scalar multiplications. There is also a way to multiply two 3-term (i.e., quadratic) polynomials using six scalar multiplications. These are used within recursive constructions to multiply two higher-degree polynomials in subquadratic time. They present division-free formulae which multiply two 5-term polynomials with 13 scalar multiplications, two 6-term polynomials with 17 scalar multiplications, and two 7-term polynomials with 22 scalar multiplications. These formulae may be mixed with the 2-term and 3-term formulae within recursive constructions, leading to improved bounds for many other degrees. Using only the 6-term formula leads to better asymptotic performance than standard Karatsuba~\cite{karatsuba_1962}. The new formulae work in any characteristic, but simplify in characteristic 2. They describe their application to elliptic curve arithmetic over binary fields and include some timing data.\\
+
+% methods
+\noindent\textbf{Karatsuba Method}\\
+
+Let A, B be binary polynomials. We seek small circuits, over the basis $(\land, \oplus, 1)$ (that is, arithmetic over $F_2$), that compute the polynomial A · B. In addition to size, i.e. number of gates, we also consider the depth of such circuits, i.e. the length of critical paths.
+Let $M(t)$ denote the number of gates necessary and sufficient to multiply two binary polynomials of size t. Operations leads to the 2-way Karatsuba recurrence $M(2n) ≤ 3M(n) + 7n – 3$. 
+
+\begin{figure}[!htb]%recommended float settings
+    \includegraphics[width=0.5\textwidth, height=0.3\textheight]{figure1_karatsuba.PNG}% here goes the figure name
+    \caption{Karatsuba Algorithm}
+    \label{fig:karatsuba}
+\end{figure}
+
+Figure 1 explains the solution. Here is an example of Karatsuba multiplication;\\
+Let $X = 56 78$ which denotes $a=56$, $b=78$\\
+Let $Y = 12 34$ which denotes $c=12$, $d=34$\\
+
+We are going to do a sequence of operations involving only these double digit numbers such as $a$, $b$, $c$ and $d$. And then after a few such operations we will collect all of the terms together in a magical way in the product of $x$ and $y$.\\
+\textbf{Step1:} $compute$ $a.c = 672$\\
+\textbf{Step2:} $compute$ $b.d = 2652$\\
+\textbf{Step3:} $compute$ $(a + b) (c + d) = 134 * 46 = 6164$\\
+\textbf{Step4:} $compute$ $(3)$ – $(2)$ – $(1)$ $= 2840$\\
+\textbf{Step5:} $672$ $0000$ $(Step1$ $0000)$ + $2652(Step2)$ + $2840$ $00$ (Step4 00)\\
+After Step5 it will give the correct result in a reduced multiplication steps.\\
+
+\textbf{\emph{A Recursive Algorithm}}\\
+
+$x$ = $10^{n/2}$ $a + b$ and $y$ = $10^{n/2}$ $c + d$ where $a,b,c,d$ are n/2 digit numbers\\
+Let's give same example: $a = 56$, $b = 78$, $c = 12$, $d = 34$\\
+\textbf{Then:} $x * y$ = ($10^{n/2}$ $a + b$) * ($10^{n/2}$ $c + d$)\\
+	      = $10^{n}$ ac + $10^{n/2}$ $(ad + bc) + bd$\\ 	
+(we are assuming that $n$ is even integer.)\\
+\textbf{Idea:} Recursively compute $ac$, $ad$, $bc$, $bd$ then compute $x*y$ straightforward way.\\
+The first question is $what$ $is$ $the$ $base$ $case?$ Because all recursive algorithms require the base case when the input is sufficiently small. If we organize this work a little bit, we can reduce it to 3 multiplication in total.\\
+\textbf{Recall:} $x*y$ = $10^n$ $ac$ + $10^{n/2}$ $(ad + bc) + bd$\\
+\textbf{Step1:} $recursively$ $compute$ $ac$\\
+\textbf{Step2:} $recursively$ $compute$ $bd$\\
+\textbf{Step3:} $recursively$ $compute$ $(a+b)$ $(c+d)$ = $ac + ad + bc + bd$\\
+\textbf{Gauss’s trick:} $(3) - (1) – (2)$ = $ad + bc$\\
+\textbf{Result:}  only need three recursive calls or multiplications.\\
+
+
+%See Equation~\ref{eqn:ExampleEquation}.
+%\begin{equation}
+%    \sum_{i=0}^n c_i x_i = c_0 x_0 + c_1 x_1 + ... + c_n x_n
+%\label{eqn:ExampleEquation}
+%\end{equation}
+
+
+% results
+\textbf{\emph{Çalık's Work}}\\
+
+This work~\cite{calik_2019} yielded three new Karatsuba recurrences:
+\begin{equation}
+    M(6n) ≤ 17M(n) + 83n − 26 
+    \label{eqn:Calik_eq_1}
+\end{equation}
+\begin{equation}
+    M(7n) ≤ 22M(n) + 106n − 31 
+    \label{eqn:Calik_eq_2}
+\end{equation}
+\begin{equation}
+    M(8n) ≤ 26M(n) + 147n − 40. 
+    \label{eqn:Calik_eq_3}
+\end{equation}
+
+According to~\cite{Find_2018} the circuits for these recurrences can be leveraged into circuits for multiplication of binary polynomials of various sizes. Doing this, it can be found that the new recurrences improve known results for Karatsuba~\cite{karatsuba_1962} multiplication starting at size 28. The circuits were generated automatically from the circuits for each set of matrices for $n = 2, . . . ,8$ (the cases $n = 6, 7, 8$ are reported in his work). He and his friend generated the circuits up to $n = 100$. The circuits were verified by generating and validating the algebraic normal form of each output. They prepared several tables in order to show their results. The table has at the first size in which the new recurrences yield a smaller number of gates. The circuits have not been optimized for depth. Here is the their methodology. \\
+\textbf{1.} Find sets of bilinear forms of minimum size $\alpha$ from which the target $C_i$’s can be computed via additions only.\\
+\textbf{2.} Each set of bilinear forms determines three matrices $T$, $R$, $E$ over $F_2$.\\
+\textbf{3.} The matrices $T$, $R$, $E$ define linear maps $L_T$, $L_R$, $L_E$.\\
+\textbf{4.} Let the number of additions necessary for each of the maps be $\mu_T$, $\mu_R$, $\mu_E$ respectively.\\
+\textbf{5.} Then the maps yield the recurrence $M(kn)$ $≤$ $\alpha$ $M(n)$ + $\beta$ $n$ + $\gamma$ with $\beta = 2\mu_T + \mu_E$ and $\gamma = \mu_R − \mu_E$.\\
+\textbf{6.} pick the best recurrence.\\
+
+A different approach to gate-efficient circuits for binary polynomial multiplication is to use interpolation methods. These methods can yield smaller circuits than Karatsuba~\cite{karatsuba_1962} multiplication at the cost of higher  depth. An interesting open question is to characterize the depth/size tradeoff of Karatsuba versus interpolation methods for polynomials of sizes of practical interest. In elliptic curve cryptography, multiplication of binary polynomials with thousands of bits is used.
+
+
+\vspace{0.125in}
+% conclusion
+\noindent\textbf{Conclusion}\\
+
+Optimization and performance enhancement efforts will always be an​​active study area in computational calculations. At the beginning of these study areas, an optimization made on the multiplication of digits will have a high impact. Considering that today's world has undergone a digital transformation and our dependence on this area is increasing day by day, it is obvious that the work done in this area will also be of great benefit to society. The proposed solution by the Karatsuba~\cite{karatsuba_1962} many years ago is also valuable in current studies today. The work done by Çalık~\cite{calik_2019} or Cenk~\cite{cenk_karatsuba_2018} or many other scientists is so valuable. From the technical side, it is not yet agreed on how many pieces to be divided into two numbers that will enter the multiplication. Çalık showed that he achieved the best result with $n$ $=$ $6$, $7$ $and$ $8$ values. However, these numbers will change depending on the scope and target of the problem. Much more efficient results are obtained as a result of the computational operations performed in today's computers can also be performed with graphics cards. Adding new algorithmic solutions as well as new hardware solutions, will bring the best solutions.
+
+\vspace{0.125in}
+% future studies
+\noindent\textbf{Future Studies}\\
+
+The algorithmic solutions that will come with hardware innovations will be the most efficient work of the future. Algorithms that can be developed alongside quantum computers, which have no place in active life today, will give the best results. For this reason, the importance of new hardware benefits is increasing with algorithm calculations.
+
+\vspace{0.125in}
+%\newpage
+% references: this should be automatic. you can also cut out extra info (titles, websites) if you're running out of space. i used 7 references in my essay, so take that info as you will.
+\noindent\textbf{References}
+\vspace{-0.125in}
+\printbibliography[heading=none]
+
+\end{document}
